@@ -1,0 +1,7 @@
+[project]
+name = "bioinfo-2026-2"
+version = "0.1.0"
+description = "Big Cheese"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
