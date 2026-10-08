@@ -66,7 +66,8 @@ Na primeira célula do *notebook* ("0 — Imports e parâmetros"), ajuste os cam
 2. O script detectará que as sessões ainda não têm os resultados do SPARQ e exportará os dados brutos de LFP para ficheiros `.mat` na pasta `SPARQ_input`.
 
 
-3. O MATLAB será aberto automaticamente em segundo plano via subprocesso.
+
+4. O MATLAB será aberto automaticamente em segundo plano via subprocesso.
 
 
 
