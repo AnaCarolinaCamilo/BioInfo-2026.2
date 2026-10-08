@@ -1,2 +1,4 @@
-dados_eletro/
+dados_eletro
 SPARQ/
+.venv/
+__pycache__/
