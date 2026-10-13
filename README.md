@@ -85,9 +85,3 @@ Na primeira célula do *notebook* ("0 — Imports e parâmetros"), ajuste os cam
 2. O código localizará os ficheiros `_clean.mat` que acabou de gerar.
 3. Será aplicado o filtro *notch* (55-65 Hz) para remover a interferência da rede elétrica.
 4. A máscara de ruído do SPARQ será utilizada para converter as amostras defeituosas em valores nulos (`NaN`), finalizando o pré-processamento do rato selecionado.
-
-
-
-
-
-```
