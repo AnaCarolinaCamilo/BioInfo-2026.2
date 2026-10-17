@@ -3,7 +3,7 @@
 > Projeto executado pela **TAIL UFPB** em cooperação com o **LEMCOG** (Laboratório de Estudos em Memória e Cognição, da Universidade Federal da Paraíba).
 
 <p align="center">
-  <img src="assets/tail.png" alt="Logo da TAIL UFPB" height="120">
+  <img src="assets/TAIL.png" alt="Logo da TAIL UFPB" height="120">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/LEMCOG.png" alt="Logo do LEMCOG" height="110"
 </p>
