@@ -4,7 +4,8 @@
 *.avi
 *.npy
 dados_eletro/
-SPARQ_input/
+SPARQ_input/*
+!SPARQ_input/README.md
 saida_preprocessamento/
 /R[0-9]*/
 
