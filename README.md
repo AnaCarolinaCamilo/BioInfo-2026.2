@@ -5,7 +5,7 @@
 <p align="center">
   <img src="assets/TAIL.png" alt="Logo da TAIL UFPB" height="120">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/LEMCOG.png" alt="Logo do LEMCOG" height="110"
+  <img src="assets/LEMCOG.png" alt="Logo do LEMCOG" height="110">
 </p>
 
 ## Sobre o projeto
@@ -14,7 +14,7 @@ Este repositório reúne o pré-processamento de sinais eletrofisiológicos (LFP
 
 ## Guia de Execução: Pré-processamento LFP com SPARQ
 
-Este documento detalha o fluxo de trabalho atualizado para o pré-processamento dos dados brutos de LFP, integrando o *pipeline* em Python com a ferramenta de deteção de ruído SPARQ no MATLAB. O guia já inclui as configurações e resoluções para jos obstáculos encontrados no ambiente Linux e inconsistências de diretórios.
+Este documento detalha o fluxo de trabalho atualizado para o pré-processamento dos dados brutos de LFP, integrando o *pipeline* em Python com a ferramenta de deteção de ruído SPARQ no MATLAB. O guia já inclui as configurações e resoluções para os obstáculos encontrados no ambiente Linux e inconsistências de diretórios.
 
 ### Estrutura do repositório
 
