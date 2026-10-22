@@ -2,6 +2,7 @@ function app = rodar_sparq(sparqRepo, dataFolder)
 % RODAR_SPARQ  Abre a GUI do SPARQ já configurada para os .mat exportados pelo notebook.
 %
 % USO:
+%   addpath('D:\TAIL\Bioinfo_2026.2\utils')
 %   app = rodar_sparq('D:\TAIL\Bioinfo_2026.2\SPARQ', 'D:\TAIL\Bioinfo_2026.2\SPARQ_input')
 %
 % ENTRADAS:
