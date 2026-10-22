@@ -7,6 +7,7 @@ Fluxo:
                              -> máscara de ruído na frequência original
 """
 import re
+import shutil
 import subprocess
 from math import gcd
 from pathlib import Path
@@ -47,18 +48,31 @@ def exportar_para_sparq(amps, fs_original, fs_sparq, pasta_input, rato, stem):
     return destino
 
 
+def localizar_matlab(matlab_exe='matlab'):
+    """Resolve o executável do MATLAB: PATH, caminho dado ou a versão mais recente em Program Files."""
+    encontrado = shutil.which(str(matlab_exe))
+    if encontrado:
+        return encontrado
+    instalados = sorted(Path(r'C:\Program Files\MATLAB').glob('R*/bin/matlab.exe'))
+    if instalados:
+        return str(instalados[-1])
+    raise FileNotFoundError(
+        f'MATLAB não encontrado ({matlab_exe!r}). Instale o MATLAB ou passe o caminho completo do matlab.exe.')
+
+
 def abrir_sparq(sparq_repo, pasta_input, pasta_script, matlab_exe='matlab'):
     """Abre o MATLAB com a GUI do SPARQ apontando para pasta_input (não bloqueia).
 
     pasta_script : pasta onde está rodar_sparq.m
-    matlab_exe   : executável do MATLAB (precisa estar no PATH ou ser o caminho completo)
+    matlab_exe   : executável do MATLAB (nome no PATH ou caminho completo); se não
+                   for encontrado, usa a versão mais recente em C:\\Program Files\\MATLAB
     """
     def q(p):  # string MATLAB entre aspas simples
         return "'" + str(p).replace("'", "''") + "'"
 
     comando = (f"addpath({q(pasta_script)}); "
                f"app = rodar_sparq({q(sparq_repo)}, {q(pasta_input)});")
-    return subprocess.Popen([matlab_exe, '-r', comando])
+    return subprocess.Popen([localizar_matlab(matlab_exe), '-r', comando])
 
 
 def localizar_resultado_sparq(pasta_resultados, stem):

@@ -10,8 +10,8 @@ saida_preprocessamento/
 /R[0-9]*/
 
 # Repositório externo do SPARQ (clonado/atalho na raiz)
-SPARQ
 SPARQ/
+R1_SPARQ/
 
 # Python / Jupyter
 __pycache__/
