@@ -23,6 +23,7 @@ BioInfo-2026.2/
 ├── eda_lfp_limpa.ipynb      # notebook do pipeline
 ├── requirements.txt         # dependências Python
 └── utils/
+    ├── baixar_dados.py      # download dos dados brutos do Drive (rclone)
     ├── read_intan_data.py   # leitura dos arquivos Intan (.int)
     ├── sparq_lfp.py         # exportação para o SPARQ e leitura dos resultados
     └── rodar_sparq.m        # abre a interface do SPARQ no MATLAB
@@ -60,6 +61,56 @@ dados_eletro/
 ```
 
 **Atenção aos arquivos vazios:** Arquivos `.int` corrompidos ou com 0 segundos de gravação gerarão o erro `index 0 is out of bounds for axis 0 with size 0`. Você deve excluí-los da pasta.
+
+### Download dos dados (rclone)
+
+O script `utils/baixar_dados.py` baixa os `.int` de cada rato para `dados_eletro/<rato>/` usando o [rclone](https://rclone.org/) com a sua conta Google.
+
+1. **Instale o rclone:** `winget install Rclone.Rclone` (Windows) ou `curl https://rclone.org/install.sh | sudo bash` (Linux).
+2. **Conecte sua conta Google** (uma vez). Rode o comando abaixo, faça login no navegador que vai abrir com a conta que tem acesso à pasta dos ratos e clique em **Permitir**:
+
+   ```bash
+   rclone config create gdrive drive scope=drive.readonly
+   ```
+
+   Para conferir, `rclone listremotes` deve mostrar `gdrive:`.
+
+   <details>
+   <summary>Prefere configurar passo a passo, ou deu algum problema?</summary>
+
+   **Passo a passo** com `rclone config` (responda cada pergunta e tecle Enter):
+
+   | O rclone pergunta | Responda |
+   |---|---|
+   | `n/s/q>` (ou `e/n/d/r/c/s/q>`, se já houver outro remote) | `n` (novo remote) |
+   | `name>` | `gdrive` |
+   | `Storage>` | `drive` (Google Drive) |
+   | `client_id>` e `client_secret>` | deixe em branco (só Enter) |
+   | `scope>` | `2` (`drive.readonly`, só leitura) |
+   | `service_account_file>` | deixe em branco |
+   | `Edit advanced config?` | `n` |
+   | `Continue using the shared client_id anyway?` | `y` |
+   | `Use web browser to automatically authenticate?` | `y` e faça login no navegador |
+   | `Configure this as a Shared Drive (Team Drive)?` | `n` |
+   | `Keep this "gdrive" remote?` | `y`, depois `q` para sair |
+
+   **Problemas comuns:**
+
+   * *O navegador não abriu:* copie o endereço `http://127.0.0.1:53682/...` que aparece no terminal e abra no navegador.
+   * *Computador sem navegador (servidor Linux):* responda `n` em "Use web browser...", rode `rclone authorize "drive"` num computador com navegador e cole o resultado no terminal do servidor.
+   * *"Remote 'gdrive' não configurado":* o nome do remote é diferente. Veja com `rclone listremotes` e passe `--remote <nome>` ao script.
+   * *Erro 404 / "não foi possível listar a pasta":* a conta usada no login não tem acesso à pasta. Peça acesso a quem compartilhou ou refaça a conexão com `rclone config reconnect gdrive:`.
+   * *Erro de cota ou aviso de que o `client_id` compartilhado do rclone foi desativado:* crie um `client_id` próprio seguindo o [guia do rclone](https://rclone.org/drive/#making-your-own-client-id) e informe-o nas perguntas `client_id>` e `client_secret>`.
+
+   </details>
+3. **Baixe** informando o link da pasta dos ratos ([pasta atual](https://drive.google.com/drive/folders/1-5FCUo-BOvnJ_217twbcyIjEVflm2NQu)):
+
+```bash
+python utils/baixar_dados.py --pasta <link> --listar   # ratos disponíveis
+python utils/baixar_dados.py --pasta <link> R4         # baixa um rato (ou R1 R4, ou ALL)
+```
+
+Opções úteis: `--dry-run` (só simula), `--filtro "*T[1-4]_*"` (só as sessões de teste) e `--com-videos` (por padrão os vídeos ficam de fora). Para não repetir o link, defina a variável de ambiente `BIOINFO_DRIVE_PASTA`. O script só copia, nunca apaga, e retoma de onde parou se for interrompido. As planilhas `.xlsx` não estão nessa pasta e devem ser copiadas à parte. Espaço por rato: de 26 GB (R6) a 106 GB (R2).
 
 ## 3. Configuração de Caminhos
 
