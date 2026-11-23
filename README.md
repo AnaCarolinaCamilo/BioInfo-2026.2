@@ -21,15 +21,21 @@ Este documento detalha o fluxo de trabalho atualizado para o pré-processamento 
 ```text
 BioInfo-2026.2/
 ├── eda_lfp_limpa.ipynb      # notebook do pipeline
+├── limpeza_intan.ipynb      # limpeza guiada por um exemplo do SPARQ
+├── docs/
+│   └── limpeza_intan.md     # uso, método e resultados da limpeza por exemplo
 ├── requirements.txt         # dependências Python
 └── utils/
     ├── baixar_dados.py      # download dos dados brutos do Drive (rclone)
+    ├── limpeza_intan.py     # funções do notebook de limpeza por exemplo
     ├── read_intan_data.py   # leitura dos arquivos Intan (.int)
     ├── sparq_lfp.py         # exportação para o SPARQ e leitura dos resultados
     └── rodar_sparq.m        # abre a interface do SPARQ no MATLAB
 ```
 
-As pastas `dados_eletro/`, `SPARQ/`, `SPARQ_input/` e `saida_preprocessamento/` ficam apenas na sua máquina e não são versionadas (ver `.gitignore`).
+Para limpar as sessões de um rato a partir de um resultado do SPARQ já marcado, use `limpeza_intan.ipynb` e siga [`docs/limpeza_intan.md`](docs/limpeza_intan.md).
+
+As pastas `dados_eletro/`, `SPARQ/`, `SPARQ_input/`, `saida_preprocessamento/` e `saida_limpeza_intan/` ficam apenas na sua máquina e não são versionadas (ver `.gitignore`).
 
 ## 1. Pré-requisitos e Dependências
 

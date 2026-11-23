@@ -7,11 +7,18 @@ dados_eletro/
 SPARQ_input/*
 !SPARQ_input/README.md
 saida_preprocessamento/
+saida_limpeza_intan/
 /R[0-9]*/
 
 # Repositório externo do SPARQ (clonado/atalho na raiz)
 SPARQ/
 R1_SPARQ/
+
+# Material pessoal de apresentação e artigos
+/*.pdf
+/imagens_slides/
+/imagens_slide6/
+/roteiro_apresentacao.md
 
 # Python / Jupyter
 __pycache__/
